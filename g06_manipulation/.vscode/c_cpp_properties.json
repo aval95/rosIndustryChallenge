@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/alex/workspace/ros_ws/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/alex/workspace/ros_ws/src/apriltags_ros/apriltags/include",
+                "/home/alex/workspace/ros_ws/src/common-sensors/common_sensors/include",
+                "/home/alex/workspace/ros_ws/src/apriltags_ros/apriltags_ros/include",
+                "/home/alex/workspace/ros_ws/src/gazebo-pkgs/gazebo_grasp_plugin/include",
+                "/home/alex/workspace/ros_ws/src/gazebo_ros_link_attacher/include",
+                "/home/alex/workspace/ros_ws/src/gazebo-pkgs/gazebo_state_plugins/include",
+                "/home/alex/workspace/ros_ws/src/gazebo-pkgs/gazebo_test_tools/include",
+                "/home/alex/workspace/ros_ws/src/gazebo-pkgs/gazebo_world_plugin_loader/include",
+                "/home/alex/workspace/ros_ws/src/general-message-pkgs/object_msgs_tools/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_action_server/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_c_model_control/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_ethercat/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_force_torque_sensor/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_s_model_articulated_gazebo_plugins/include",
+                "/home/alex/workspace/ros_ws/src/robotiq/robotiq_s_model_control/include",
+                "/home/alex/workspace/ros_ws/src/universal_robot/ur_kinematics/include",
+                "/home/alex/workspace/ros_ws/src/ur_modern_driver/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

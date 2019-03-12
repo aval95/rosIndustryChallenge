@@ -1,0 +1,10 @@
+<launch>
+    <arg name="sim" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="startiamhere" default="0"/>
+
+    <node name="g06_fsm_node" pkg="g06_fsm" type="g06_fsm_node" output="screen"/>
+    <param name="sim" value="$(arg sim)"/>
+    <param name="debug" value="$(arg debug)"/>
+    <param name="startiamhere" value="$(arg startiamhere)"/>
+</launch>

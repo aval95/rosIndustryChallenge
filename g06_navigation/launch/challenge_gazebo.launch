@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+
+  <arg name="ur10_ns" default="/ur10" />
+  <arg name="marrtino_ns" default="/marrtino" />
+
+  <arg name="tf_prefix" default="marrtino" />
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="yaw" default="3.14"/>
+  
+
+  <!-- startup simulated world -->
+  <include file="$(find challenge_arena)/launch/arena.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+  </include>
+
+  <!-- startup UR10 robot -->
+  <include file="$(find challenge_arena)/launch/ur10_gazebo.launch">
+    <arg name="ur10_ns" value="$(arg ur10_ns)" />
+  </include>
+
+
+ <include file="$(find g06_navigation)/launch/spawn_marrtino.launch">
+    <arg name="launch_navigation" value="true"/>
+    <arg name="launch_mapping" value="false"/>
+    <arg name="map_file" value="sim/arena.yaml"/>
+    <arg name="x" value="$(arg x)" />
+    <arg name="y" value="$(arg y)" />
+    <arg name="z" value="$(arg z)" />
+    <arg name="yaw" value="$(arg yaw)" />
+    <arg name="robot_id" default="$(arg marrtino_ns)"/>
+  </include>
+
+  <!-- startup turtlebot mobile base -->
+  <!--include file="$(find challenge_arena)/launch/turtlebot_gazebo.launch">
+    <arg name="turtlebot_ns" value="$(arg turtlebot_ns)" />
+  </include-->
+
+<node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="2.05 0.42 0 1.57 0 0 /world $(arg marrtino_ns)_map 100" />
+
+</launch>
+
+  
+
+  
+
+  
+  

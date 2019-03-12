@@ -1,0 +1,161 @@
+## TOLLERANZE
+
+# Tolleranze per il corridor following e per le fasi di approaching
+EPSILON: 0.025
+EPSILON_FINE: 0.015
+
+# Tolleranza nella differenza tra le letture del laser per considerare il muro come parallelo
+iah1_parallel_tolerance: 0.01
+iah3_parallel_tolerance: 0.01
+iah8_parallel_tolerance: 0.01
+
+
+
+## RAGGI LASER
+
+# Numero di raggi da considerare a destra, a sinistra e davanti quando non si usano i tipi predefiniti A, B, C, D e Front
+# @scanCallback
+scan_left: 10
+scan_right: 10
+scan_front: 20
+
+
+
+## VELOCITA'
+
+# Velocita' base in situazioni normali
+vel_std_linear_x: 0.3 #0.2
+vel_std_linear_y: 0
+vel_std_linear_z: 0
+vel_std_angular_x: 0
+vel_std_angular_y: 0
+vel_std_angular_z: 0
+
+# Velocita' base in manovra
+vel_turn_linear_x: 0.2 #0.1
+vel_turn_angular_z: 0.2
+vel_inplace_rot_angular_z: 1
+
+# Velocita' base in modalita' turbo
+vel_turbo_linear_x: 0.3
+vel_turbo_linear_y: 0
+vel_turbo_linear_z: 0
+vel_turbo_angular_x: 0
+vel_turbo_angular_y: 0
+vel_turbo_angular_z: 0.3
+
+# Velocita' base in modalita' recovery step 1 (o in retromarcia)
+vel_recovery_linear_x: 0.1
+vel_recovery_linear_y: 0
+vel_recovery_linear_z: 0
+vel_recovery_angular_x: 0
+vel_recovery_angular_y: 0
+vel_recovery_angular_z: 0.4
+
+# Velocita' base in modalita' recovery step 2
+vel_recovery_s2_linear_x: 0.1
+vel_recovery_s2_linear_y: 0
+vel_recovery_s2_linear_z: 0
+vel_recovery_s2_angular_x: 0
+vel_recovery_s2_angular_y: 0
+vel_recovery_s2_angular_z: 0.4
+
+# Velocita' base in modalita' recovery step 3
+vel_recovery_s3_linear_x: 0.1
+vel_recovery_s3_linear_y: 0
+vel_recovery_s3_linear_z: 0
+vel_recovery_s3_angular_x: 0
+vel_recovery_s3_angular_y: 0
+vel_recovery_s3_angular_z: 0.4
+
+# Velocita' per curva in uscita dal corridoio
+# @iamhere6
+iah6_vel_curve_linear_x: 0.2
+iah6_vel_curve_angular_z: -0.4
+
+
+
+## DISTANZE
+
+# Distanza dal muro per fermarsi in iamhere2
+# @scanCallback
+iah2_stop_frontDistance: 1.05
+iah2_stop_leftDistance: 1.5
+
+# Distanza a destra che deve trovare Marrtino per capire di essere uscito dal corridoio
+# @scanCallback
+iah5_exit_rightSpace: 1
+
+# Distanza frontale con cui Marrtino si ferma e arretra
+# @scanCallback
+corridor_dist_frontObstacle: 0.35
+
+# Distanza da mantenere a destra e sinistra nel corridoio
+# @scanCallback
+corridor_dist_left: 0.4
+corridor_dist_right: 0.4
+
+# Distanze per entrare in modalita' recovery
+# @recoveryCallback
+recovery_front_dist: 0.3
+recovery_leftA_dist: 0.25 #0.3
+recovery_leftB_dist: 0.3 #0.36
+recovery_leftC_dist: 0 #Non usato
+recovery_leftD_dist: 0.4
+recovery_rightA_dist: 0.25 #0.3
+recovery_rightB_dist: 0.3 #0.36
+recovery_rightC_dist: 0 #Non usato
+recovery_rightD_dist: 0.4
+
+# Distanza dal muro per fermarsi in iamhere1 (avvicinamento)
+# @iamhere1
+iah1_stop_dist_front: 0.3
+iah1_stop_dist_leftD: 0.35
+iah1_stop_dist_rightD: 0.35
+
+# Distanza dai muri per capire che si e' all'imbocco del corridio
+# @iamhere1
+iah1_corr_entrance_dist_leftB: 0.5
+iah1_corr_entrance_dist_leftA: 0.35
+iah1_corr_entrance_dist_rightA_min: 0.26
+iah1_corr_entrance_dist_rightA_max: 0.35
+
+# Distanza dal muro per fermare la rotazione in iamhere3
+# @iamhere3
+iah3_stop_rot_dist_leftD: 0.6
+iah3_stop_rot_dist_rightD: 0.6
+
+# Distanza dal muro per fermarsi in iamhere3 (avvicinamento)
+# @iamhere3
+iah3_stop_dist_front: 0.2
+iah3_stop_dist_leftD: 0.25
+iah3_stop_dist_rightD: 0.25
+
+# Distanza dal muro per fermarsi in iamhere4 (allontanamento)
+# @iamhere4
+iah4_stop_dist_front: 0.25 #0.4
+iah4_stop_dist_leftD: 0.3 #0.45
+iah4_stop_dist_rightD: 0.3 #0.45
+
+# Distanza dal muro per fermarsi in iamhere8 (avvicinamento)
+# @iamhere8
+iah8_stop_dist_front: 0.2
+iah8_stop_dist_leftD: 0.25
+iah8_stop_dist_rightD: 0.25
+
+# Distanza dal muro per fermarsi in iamhere9 (allontanamento)
+# @iamhere9
+iah9_stop_dist_front: 0.4
+iah9_stop_dist_leftD: 0.45
+iah9_stop_dist_rightD: 0.45
+
+
+
+## RECOVERY
+
+# Numero di recovery consecutivi per passare da step 1 a step 2
+recovery_cons_first_thr: 2
+recovery_cons_second_thr: 4
+
+# Numero di non recovery per azzerare i recovery consecutivi
+recovery_nocons_thr: 2

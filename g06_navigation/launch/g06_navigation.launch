@@ -1,0 +1,48 @@
+<launch>
+    <arg name="sim" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="is360laser" default="false" if="$(arg sim)"/>
+    <arg name="is360laser" default="true" unless="$(arg sim)"/>
+    <arg name="sensors_only_mode" default="false"/>
+    <arg name="force_rotation" default="false"/>
+
+    <node pkg="g06_laserprocessing" name="g06_laserprocessing_node" type="g06_laserprocessing_node" output="screen" />
+
+    <node name="line_extractor" pkg="laser_line_extraction" type="line_extraction_node">
+        <param name="~frequency" value="30.0"/>
+        <param name="~frame_id" value="/marrtino_laser_link"/>
+        <param name="~scan_topic" value="/g06/newlaser_front" if="$(arg is360laser)"/>
+        <param name="~scan_topic" value="/marrtino/scan" unless="$(arg is360laser)"/>
+        <param name="~publish_markers" value="true"/>
+        <param name="~least_sq_angle_thresh" value="0.0001"/>
+        <param name="~least_sq_radius_thresh" value="0.0001"/>
+        <param name="~min_line_length" value="0.2"/>
+        <param name="~min_line_points" value="10"/>
+        <param if="$(arg sim)"     name="~bearing_std_dev" value="1e-5"/>
+        <param unless="$(arg sim)" name="~bearing_std_dev" value="1e-3"/>
+        <param if="$(arg sim)"     name="~range_std_dev" value="0.012"/>
+        <param unless="$(arg sim)" name="~range_std_dev" value="0.05"/>
+        <param if="$(arg sim)"     name="~max_line_gap" value="0.3"/>
+        <param unless="$(arg sim)" name="~max_line_gap" value="0.5"/>
+        <param if="$(arg sim)"     name="~min_range" value="0.01"/>
+        <param unless="$(arg sim)" name="~min_range" value="0.05"/>
+        <param if="$(arg sim)"     name="~min_split_dist" value="0.04"/>
+        <param unless="$(arg sim)" name="~min_split_dist" value="0.05"/>
+        <param if="$(arg sim)"     name="~outlier_dist" value="0.06"/>
+        <param unless="$(arg sim)" name="~outlier_dist" value="0.05"/>
+    </node>
+    
+    <node pkg="g06_navigation" name="g06_navigation_node" type="g06_navigation_node" output="screen">
+        <rosparam if="$(arg sim)" file="$(find g06_navigation)/config/custom_navigation_params_sim.yaml" command="load"/>
+        <rosparam unless="$(arg sim)" file="$(find g06_navigation)/config/custom_navigation_params_real.yaml" command="load"/>
+    </node>
+    <param name="sim" value="$(arg sim)"/>
+    <param name="debug" value="$(arg debug)"/>
+    <param name="is360laser" value = "$(arg is360laser)"/>
+    <param name="cmd_vel_topic" value="/marrtino/move_base/cmd_vel" if="$(arg sim)"/>
+    <param name="cmd_vel_topic" value="/cmd_vel" unless="$(arg sim)"/>
+    <param name="odom_topic" value="/marrtino/marrtino_base_controller/odom" if="$(arg sim)"/>
+    <param name="odom_topic" value="/odom" unless="$(arg sim)"/>
+    <param name="sensors_only_mode" value="$(arg sensors_only_mode)"/>
+    <param name="force_rotation" value="$(arg force_rotation)"/>
+</launch>

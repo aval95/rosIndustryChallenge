@@ -1,0 +1,10 @@
+<launch>
+   <arg name="sim" default="true"/>
+   <arg name="cont" default="false"/>
+   <arg name="frame_ids" default=""/>
+
+    <node name="g06_perception_node" pkg="g06_perception" type="g06_perception_node" output="screen" />
+    <param name="sim" value="$(arg sim)"/>
+    <param name="cont" value="$(arg cont)"/>
+    <param name="frame_ids" value="$(arg frame_ids)"/>
+</launch>

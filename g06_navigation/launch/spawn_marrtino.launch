@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_id" default="marrtino"/>
+
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <arg name="launch_navigation" default="false"/>
+  <arg name="launch_mapping" default="false"/>
+  <arg name="map_file" default="arena.yaml"/>
+
+  <group ns="$(arg robot_id)">
+
+    <arg name="prefix" value="$(arg robot_id)_" />
+
+    <!-- Load robot description -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find marrtino_description)/urdf/marrtino_robot.xacro' prefix:=$(arg prefix) --inorder" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+      <remap from="/joint_states" to="joint_states" />
+    </node>
+
+    <!-- Spawn robot in gazebo -->
+    <node name="spawn_marrtino_model" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-x $(arg x)
+            -y $(arg y)
+            -z $(arg z)
+            -Y $(arg yaw)
+            -unpause
+            -urdf
+            -param robot_description
+            -model $(arg robot_id)" />
+
+    <!-- Start control node -->
+    <include file="$(find marrtino_control)/launch/control.launch">
+      <arg name="prefix" value="$(arg prefix)"/>
+      <arg name="simulation" value="true"/>
+    </include>
+
+    <!-- Launch Navigation-->
+    <include if="$(arg launch_navigation)" file="$(find g06_navigation)/launch/robot_navigation.launch">
+      <arg name="prefix" value="$(arg prefix)"/>
+      <arg name="mapping" value="$(arg launch_mapping)"/>
+      <arg name="map_file" value="$(arg map_file)"/>
+      <arg name="x" value="$(arg x)"/>
+      <arg name="y" value="$(arg y)"/>
+      <arg name="z" value="$(arg z)"/>
+      <arg name="yaw" value="$(arg yaw)"/>
+    </include>
+
+  </group>
+
+</launch>

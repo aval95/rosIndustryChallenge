@@ -1,0 +1,6 @@
+<launch>
+    <arg name="sim" default="true"/>
+
+    <node name="g06_user_node" pkg="g06_user" type="g06_user_node" output="screen"/>
+    <param name="sim" value="$(arg sim)"/>
+</launch>

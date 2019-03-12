@@ -1,0 +1,6 @@
+int32 numFound
+apriltags_ros/AprilTagDetectionArray detections_all
+int32 numRequested
+apriltags_ros/AprilTagDetectionArray detections_requested
+---
+int32 ack

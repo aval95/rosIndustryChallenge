@@ -1,0 +1,5 @@
+int32 iamhere
+geometry_msgs/PoseStamped robotPose
+---
+int32 ack
+int32 gonext

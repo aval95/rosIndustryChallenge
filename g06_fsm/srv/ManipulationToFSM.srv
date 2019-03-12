@@ -1,0 +1,5 @@
+int32 done
+int32 numLoaded
+---
+int32 ack
+int32 numRemaining
